@@ -20,16 +20,32 @@ class File:
             "name": self.name,
             "path": self.path,
             "extension": self.name.split(".")[-1],
-            "size": pathlib.Path(os.path.join(self.path)).stat().st_size,   
+            "size": str(round((pathlib.Path(os.path.join(self.path)).stat().st_size / (1024 * 1024)), 2)) + "MB",   
         }
         
         return self.detail
 
 class FileCollector:
+    """
+    Collects and manages files based on their path and extension.
+
+    Args:
+        path (str): The path where the files will be collected from.
+        extension (str or list): The file extension(s) to filter the files by.
+
+    Attributes:
+        path (str): The path where the files will be collected from.
+        extension (str or list): The file extension(s) to filter the files by.
+        is_moved (bool): Indicates whether the files have been moved or not.
+        files (list): The list of files found.
+    """
+    
+    
     def __init__(self, path: str, extension: Union[str, list]):
         self.path = path
         self.extension = extension
         self.is_moved = False
+        
         
     def filter(self) -> List[File]:
         list_files = []
@@ -51,7 +67,7 @@ class FileCollector:
         return list_files
         
         
-    def move(self, new_path):
+    def move(self, new_path: str):
         if self.files:
             for file in self.files:
                 file.move(new_path)
