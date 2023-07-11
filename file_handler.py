@@ -18,6 +18,9 @@ class ExtensionHandler:
         if self.name is not None and self.is_not_none == False:
             self.load()
             
+        if not self.validate_path():
+            self.dir_output = self.create_dir()
+            
     
     def save(self):
         if self.is_not_none():
@@ -50,7 +53,7 @@ class ExtensionHandler:
         return string.strip("[]").strip('""').replace(" ", "").replace("'", "").split(",")
 
     def validate_path(self) -> bool:
-        if os.path.is_dir(self.dir_output):
+        if os.path.isdir(self.dir_output):
             self.is_path = True
             return True
         
@@ -59,10 +62,11 @@ class ExtensionHandler:
         return False
     
     
-    def create_dir(self):
+    def create_dir(self) -> str:
         if not self.is_path:
             if not os.path.exists(self.dir_output):
-                os.makedirs(os.path.join(os.getcwd(),self.dir_output), exist_ok=True)
+                os.makedirs(os.path.join(self.dir_output, self.dir_output.split("/")[-1]), exist_ok=True)
+        return os.path.join(self.dir_output, self.dir_output.split("/")[-1])
           
             
     def is_not_none(self) -> bool:
@@ -73,9 +77,14 @@ class File:
         self.path = path
         self.name = name
 
-    def move(self, new_path: str):
-        shutil.move(os.path.join(self.path), new_path)
+    def move(self, extensionHandler: ExtensionHandler) -> bool:
+        if extensionHandler.is_path:
+            shutil.move(os.path.join(self.path), extensionHandler.dir_output)
+            
+        else:    
+            shutil.move(os.path.join(self.path), extensionHandler.dir_output)
 
+        return True
     def delete(self):
         os.remove(os.path.join(self.path))
         
@@ -125,10 +134,10 @@ class FileCollector:
         return list_files
         
         
-    def move(self, new_path: str):
+    def move(self):
         if self.files:
             for file in self.files:
-                file.move(new_path)
+                file.move(self.extension)
             self.is_moved = True
 
     @property

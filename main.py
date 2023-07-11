@@ -3,9 +3,7 @@ from file_handler import FileCollector, ExtensionHandler
 from config import Config
 
 
-extensions = ExtensionHandler(name="Imagenes")
-if extensions.load():
-    files = FileCollector("C:\\Users\\David Latosefki\\Downloads", extensions)
-
-    for file in files.files:
-        print(file.details["name"])
+extensions = ExtensionHandler(extensions=["mp4", "avi"], name="Video", dir_output="C:\\Users\\David Latosefki\\Videos\\probando")
+extensions.save()
+files = FileCollector("C:\\Users\\David Latosefki\\Downloads", extensions)
+files.move()
