@@ -18,7 +18,7 @@ class ExtensionHandler:
         if self.name is not None and self.is_not_none == False:
             self.load()
             
-        if not self.validate_path():
+        if not self.validate_path() and self.dir_output != None:
             self.dir_output = self.create_dir()
             
     
@@ -50,16 +50,20 @@ class ExtensionHandler:
 
                 
     def convert_to_list(self, string: str) -> List[str]:
-        return string.strip("[]").strip('""').replace(" ", "").replace("'", "").split(",")
+        return string.strip("[]").strip('"').replace(" ", "").replace("'", "").split(",")
 
     def validate_path(self) -> bool:
-        if os.path.isdir(self.dir_output):
-            self.is_path = True
-            return True
-        
-        self.is_path = False
-        
-        return False
+        try:
+            if os.path.isdir(self.dir_output):
+                self.is_path = True
+                return True
+ 
+            self.is_path = False
+            
+            return False
+    
+        except TypeError:
+            return False
     
     
     def create_dir(self) -> str:
