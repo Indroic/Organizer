@@ -1,0 +1,19 @@
+body{
+    width: 595px;
+    height: 842pc;
+    background: var(--black, #262626);
+}
+
+.form{
+    width: 544px;
+    height: 776px;
+    border-radius: 13px;
+    background: var(--black, #262626);
+    flex-shrink: 0;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.17);
+}
+
+#path{
+    border-radius: 8px;
+    border: 2pc solid var(--blue-cyan, #72A1E5);
+}
