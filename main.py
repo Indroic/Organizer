@@ -2,8 +2,8 @@ import sys
 import os
 from pathlib import Path
 
-from file_handler import FileCollector, Filter
-from config import Config
+from handlers.file_handler import FileCollector, Filter
+from handlers.config import Config
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 
@@ -40,6 +40,7 @@ class Main(QMainWindow):
     
         self.ui.select_dir.clicked.connect(self.select_dir)
         self.ui.organize_btn.clicked.connect(self.organize)
+        self.ui.gear_btn.clicked.connect(self.view_config)
         
     def set_list_filters(self):
         self.ui.filters_list.addItems(self.config.get_filters())
@@ -75,6 +76,8 @@ class Main(QMainWindow):
             
             self.error.exec()
         
+    def view_config(self):
+        self.ui.stackedWidget.setCurrentIndex(1)
         
     
         
