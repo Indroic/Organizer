@@ -7,6 +7,15 @@ from typing import List
 
 
 class Filter:
+    """
+    Args:
+        extensions (List[str]): extensions list.
+        name (str): name of the filter.
+        dir_output (str): directory output for move files by.
+    
+    """
+    
+    
     def __init__(self, extensions: List[str] = None, name: str = None, dir_output: str = None):
         self.extensions = extensions
         self.name = name
@@ -20,7 +29,7 @@ class Filter:
             
 
             
-    
+    #Guarda el filtro
     def save(self):
         if self.is_not_none():
             self.config[f"Filter.{self.name}"] = {
@@ -32,7 +41,7 @@ class Filter:
                 self.config.write(fp)
    
             
-            
+    #Carga el filtro
     def load(self) -> bool:
         if self.name is not None:
             try:
@@ -53,6 +62,13 @@ class Filter:
         return all(var is not None for var in [self.extensions, self.dir_output])
 
 class File:
+    """
+    Args:
+        path (str): The path where the files.
+        name (str): The name of the file.
+    
+    """
+    
     def __init__(self, path, name):
         self.path = path
         self.name = name
@@ -114,11 +130,11 @@ class FileCollector:
 
     Args:
         path (str): The path where the files will be collected from.
-        extension (str or list): The file extension(s) to filter the files by.
+        extension (Filter): The filter of the files by.
 
     Attributes:
         path (str): The path where the files will be collected from.
-        extension (str or list): The file extension(s) to filter the files by.
+        filter (Filter): The filter of the files by.
         is_moved (bool): Indicates whether the files have been moved or not.
         files (list): The list of files found.
     """
