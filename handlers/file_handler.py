@@ -2,7 +2,7 @@ import os
 import pathlib
 import shutil
 from configparser import NoSectionError
-from config import Config
+from handlers.config import Config
 from typing import List
 
 
