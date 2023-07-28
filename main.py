@@ -7,9 +7,8 @@ from config import Config
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 
-from success_dialog_ui import SuccessDialog
-from error_dialog_ui import ErrorDialog
-from ui_form import Ui_Main
+from ui.dialogs import SuccessDialog, ErrorDialog
+from ui.mainWindow import Ui_Main
 
 class Main(QMainWindow):
     def __init__(self, parent=None):
