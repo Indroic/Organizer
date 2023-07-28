@@ -6,32 +6,29 @@ from config import Config
 from typing import List
 
 
-class ExtensionHandler:
+class Filter:
     def __init__(self, extensions: List[str] = None, name: str = None, dir_output: str = None):
         self.extensions = extensions
         self.name = name
         self.dir_output = dir_output
-        self.is_path = False
+
         
         self.config = Config()
     
         if self.name is not None and self.is_not_none == False:
             self.load()
             
-        if not self.validate_path() and self.dir_output != None:
-            self.dir_output = self.create_dir()
+
             
     
     def save(self):
         if self.is_not_none():
-            self.validate_path()
-            self.config[f"ExtensionsHandler.{self.name}"] = {
+            self.config[f"Filter.{self.name}"] = {
                 "Name": self.name,
                 "Extensions": self.extensions,
                 "Directory": self.dir_output,
-                "isPath": self.is_path
                 }
-            with open(os.path.join(os.getcwd(), "config.ini"), "w", encoding="utf-8") as fp:
+            with open(os.path.join(pathlib.Path(__file__).parent, "config.ini"), "w", encoding="utf-8") as fp:
                 self.config.write(fp)
    
             
@@ -39,10 +36,9 @@ class ExtensionHandler:
     def load(self) -> bool:
         if self.name is not None:
             try:
-                self.name = self.config.get(f"ExtensionsHandler.{self.name}", "Name")
-                self.extensions = self.convert_to_list(self.config[f"ExtensionsHandler.{self.name}"]["Extensions"])
-                self.dir_output = self.config.get(f"ExtensionsHandler.{self.name}", "Directory")
-                self.is_path = self.config.get(f"ExtensionsHandler.{self.name}", "isPath")
+                self.name = self.config.get(f"Filter.{self.name}", "Name")
+                self.extensions = self.convert_to_list(self.config[f"Filter.{self.name}"]["Extensions"])
+                self.dir_output = self.config.get(f"Filter.{self.name}", "Directory")
                 
                 return True
             except NoSectionError:
@@ -52,26 +48,6 @@ class ExtensionHandler:
     def convert_to_list(self, string: str) -> List[str]:
         return string.strip("[]").strip('"').replace(" ", "").replace("'", "").split(",")
 
-    def validate_path(self) -> bool:
-        try:
-            if os.path.isdir(self.dir_output):
-                self.is_path = True
-                return True
- 
-            self.is_path = False
-            
-            return False
-    
-        except TypeError:
-            return False
-    
-    
-    def create_dir(self) -> str:
-        if not self.is_path:
-            if not os.path.exists(self.dir_output):
-                os.makedirs(os.path.join(self.dir_output, self.dir_output.split("/")[-1]), exist_ok=True)
-        return os.path.join(self.dir_output, self.dir_output.split("/")[-1])
-          
             
     def is_not_none(self) -> bool:
         return all(var is not None for var in [self.extensions, self.dir_output])
@@ -81,14 +57,43 @@ class File:
         self.path = path
         self.name = name
 
-    def move(self, extensionHandler: ExtensionHandler) -> bool:
-        if extensionHandler.is_path:
-            shutil.move(os.path.join(self.path), extensionHandler.dir_output)
+    def move(self, filter: Filter, actual_path) -> bool:
+        actual = os.path.join(actual_path, filter.dir_output)
+        
+        if pathlib.Path(filter.dir_output).is_absolute() == True:
+            if not os.path.isdir(filter.dir_output):
+                if not os.path.exists(filter.dir_output):    
+                    os.makedirs(filter.dir_output)
             
-        else:    
-            shutil.move(os.path.join(self.path), extensionHandler.dir_output)
-
+                else:
+                    os.makedirs(filter.dir_output + "(organized)", exist_ok=True)
+                    
+                    shutil.move(self.path, filter.dir_output + "(organized)")
+                    
+                    return True
+                
+                    
+            shutil.move(self.path, filter.dir_output)
+            
+            return True
+        
+        else:
+            if not os.path.isdir(actual):
+                if  not os.path.exists(actual):    
+                    os.makedirs(actual)
+            
+                else:
+                    os.makedirs(actual + "(organized)", exist_ok=True)
+                    
+                    shutil.move(self.path, actual + "(organized)")
+                    
+                    return True
+                
+                    
+        shutil.move(self.path, actual)
+            
         return True
+
     def delete(self):
         os.remove(os.path.join(self.path))
         
@@ -119,19 +124,19 @@ class FileCollector:
     """
     
     
-    def __init__(self, path: str, extension: ExtensionHandler):
+    def __init__(self, path: str, filter: Filter):
         self.path = path
-        self.extension = extension
+        self.filter = filter
         self.is_moved = False
         
         
-    def filter(self) -> List[File]:
+    def filter_files(self) -> List[File]:
         list_files = []
         
         with os.scandir(self.path) as entries:
             for entry in entries:
                 if entry.is_file():
-                    for ext in self.extension.extensions:
+                    for ext in self.filter.extensions:
                         if entry.name.split(".")[-1] == ext:
                             list_files.append(File(entry.path, entry.name))
         
@@ -141,9 +146,9 @@ class FileCollector:
     def move(self):
         if self.files:
             for file in self.files:
-                file.move(self.extension)
+                file.move(self.filter, self.path)
             self.is_moved = True
 
     @property
     def files(self) -> List[File]:
-        return self.filter()
+        return self.filter_files()

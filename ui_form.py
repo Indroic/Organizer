@@ -8,18 +8,13 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
+from PySide6.QtCore import (QCoreApplication,QMetaObject, QRect, QSize)
+from PySide6.QtGui import ( QIcon, QPixmap)
+from PySide6.QtWidgets import (QFrame, QHBoxLayout, QLabel,
+    QListWidget,QPushButton,
     QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout,
     QWidget)
-import icons_rc
+import source.icons_rc
 
 class Ui_Main(object):
     def setupUi(self, Main):
@@ -52,8 +47,7 @@ class Ui_Main(object):
         self.gear_layout.setObjectName(u"gear_layout")
         self.gear_btn = QPushButton(self.body)
         self.gear_btn.setObjectName(u"gear_btn")
-        self.gear_btn.setStyleSheet(u"background: rgba(0,0,0, 0);\n"
-"color: #fff;")
+        self.gear_btn.setStyleSheet(u"background: rgba(0,0,0, 0);")
         icon = QIcon()
         icon.addFile(u":/icons/gear.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.gear_btn.setIcon(icon)

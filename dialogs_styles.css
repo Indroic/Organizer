@@ -1,0 +1,15 @@
+QDialog{
+	background-color: rgba(38, 38, 38, 1);
+	
+}
+
+QLabel{
+	color: rgba(249,249,249,1);
+	text-align: center;
+	font-family: Inter;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+
+}

@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="logo">
+    <file>logo.png</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>error.svg</file>
+    <file>success.svg</file>
+    <file>gear.svg</file>
+  </qresource>
+</RCC>
