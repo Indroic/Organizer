@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (QFrame, QHBoxLayout, QLabel,
     QListWidget,QPushButton,
     QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout,
     QWidget)
-import source.icons_rc
+import ui.source.icons_rc
 
 class Ui_Main(object):
     def setupUi(self, Main):

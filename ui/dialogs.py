@@ -13,7 +13,7 @@ from PySide6.QtGui import ( QPixmap)
 from PySide6.QtWidgets import (QDialog, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
-import source.icons_rc
+import ui.source.icons_rc
 
 class SuccessDialog(QDialog):
     def __init__(self, message):
@@ -23,7 +23,7 @@ class SuccessDialog(QDialog):
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
-        self.setStyleSheet(open("dialogs_styles.css", "r").read())
+        self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
         self.horizontalLayout_3 = QHBoxLayout(self)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout = QVBoxLayout()
@@ -95,7 +95,7 @@ class ErrorDialog(QDialog):
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
-        self.setStyleSheet(open("dialogs_styles.css", "r").read())
+        self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
         self.horizontalLayout_3 = QHBoxLayout(self)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout = QVBoxLayout()

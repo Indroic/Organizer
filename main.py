@@ -34,7 +34,7 @@ class Main(QMainWindow):
         self.dir_dialog.setWindowTitle("Seleccionar Carpeta")
 
         
-        self.setStyleSheet(open("styles.css", "r").read())
+        self.setStyleSheet(open("ui/source/styles/styles.css", "r").read())
     
         self.set_list_filters()
     
@@ -42,7 +42,7 @@ class Main(QMainWindow):
         self.ui.organize_btn.clicked.connect(self.organize)
         
     def set_list_filters(self):
-        self.ui.filters_list.addItems(self.config.get_fil())
+        self.ui.filters_list.addItems(self.config.get_filters())
         
     def select_dir(self):
         self.dir_dialog.exec()
@@ -71,7 +71,7 @@ class Main(QMainWindow):
             self.success.exec()
         
         else:
-            self.error = ErrorDialog("Sleccione una carpeta y un filtro")
+            self.error = ErrorDialog("Seleccione una carpeta y un filtro")
             
             self.error.exec()
         
