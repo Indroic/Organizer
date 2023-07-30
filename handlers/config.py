@@ -10,7 +10,9 @@ class Config(configparser.ConfigParser):
             self.read("config.ini")
         else:
             self.create_config()
-        
+    
+    def reload(self):
+        self.__init__()
     
     def create_config(self):
         if not os.path.exists(os.path.join(os.getcwd(), "config.ini")):
@@ -20,19 +22,19 @@ class Config(configparser.ConfigParser):
                 self.write(fp)
     
     def save_config(self):
-        with open(os.path.join(pathlib.Path(__file__).parent, "config.ini"), "w", encoding="utf-8") as fp:
+        with open(os.path.join(os.getcwd(),"config.ini"), "w", encoding="utf-8") as fp:
             self.write(fp)
                 
     def get_filters(self) -> List[str]:
         
-        handlers =[]
+        filters =[]
         all_sections = self.sections()
         
         for section in all_sections:
             if section.startswith("Filter"):
-                handlers.append(self.items(section)[0][1])
+                filters.append(self.items(section)[0][1])
                 
-        return handlers
+        return filters
         
             
 

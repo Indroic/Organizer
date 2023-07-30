@@ -37,7 +37,7 @@ class Filter:
                 "Extensions": self.extensions,
                 "Directory": self.dir_output,
                 }
-            with open(os.path.join(pathlib.Path(__file__).parent, "config.ini"), "w", encoding="utf-8") as fp:
+            with open(os.path.join(os.getcwd(), "config.ini"), "w", encoding="utf-8") as fp:
                 self.config.write(fp)
    
             
@@ -52,6 +52,10 @@ class Filter:
                 return True
             except NoSectionError:
                 return False
+            
+    def delete(self):
+        self.config.remove_section(f"Filter.{self.name}")
+        self.config.save_config()
 
                 
     def convert_to_list(self, string: str) -> List[str]:

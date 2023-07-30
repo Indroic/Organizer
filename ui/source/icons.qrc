@@ -3,6 +3,7 @@
     <file>logo.png</file>
   </qresource>
   <qresource prefix="icons">
+    <file>back.svg</file>
     <file>error.svg</file>
     <file>success.svg</file>
     <file>gear.svg</file>

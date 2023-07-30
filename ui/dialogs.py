@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (QDialog, QHBoxLayout, QLabel,
 import ui.source.icons_rc
 
 class SuccessDialog(QDialog):
-    def __init__(self, message):
+    def __init__(self):
         super().__init__()
         if not self.objectName():
             self.setObjectName(u"Dialog")
@@ -47,7 +47,6 @@ class SuccessDialog(QDialog):
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMaximumSize(QSize(100000, 30))
         self.label_2.setAlignment(Qt.AlignCenter)
-        self.label_2.setText(message)
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
@@ -85,10 +84,12 @@ class SuccessDialog(QDialog):
 
 
         QMetaObject.connectSlotsByName(self)
+    def set_message(self, message):
+        self.label_2.setText(message)
         
         
 class ErrorDialog(QDialog):
-    def __init__(self, message):
+    def __init__(self):
         super().__init__()
         if not self.objectName():
             self.setObjectName(u"Dialog")
@@ -119,7 +120,7 @@ class ErrorDialog(QDialog):
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMaximumSize(QSize(100000, 30))
         self.label_2.setAlignment(Qt.AlignCenter)
-        self.label_2.setText(message)
+
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
@@ -157,3 +158,6 @@ class ErrorDialog(QDialog):
 
 
         QMetaObject.connectSlotsByName(self)
+
+    def set_message(self, message):
+        self.label_2.setText(message)

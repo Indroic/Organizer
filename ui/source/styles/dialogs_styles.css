@@ -4,12 +4,66 @@ QDialog{
 }
 
 QLabel{
-	color: rgba(249,249,249,1);
-	text-align: center;
+	color: rgba(249, 249, 249, 0.53);
 	font-family: Inter;
-	font-size: 16px;
+	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+QLabel#text_title_2 {
+	color: #FFF;
+
+
+
+	font-family: Impact;
+	font-size: 25px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+QPushButton {
+	border-radius: 10px;
+	border: 2px solid #223843;
+	background: rgba(34, 56, 67, 0.46);
+	color: rgba(249, 249, 249, 1);
+
+}
+
+
+QToolButton{
+	border-radius: 10px;
+	border: 2px solid #223843;
+	background: rgba(34, 56, 67, 0.46);
+	color: rgba(249, 249, 249, 1);
+
+}
+
+QPushButton:pressed{
+	background: rgba(61, 101, 121, 0.582);
+}
+
+QPushButton:hover {
+
+	background: rgba(28, 60, 77, 0.438);
+	
+}
+
+QListView{
+	background: rgba(255, 255, 255, 0);
+	color: rgba(249,249,249,1);
+	border-radius: 10px;
+	border: 2px solid rgba(7, 7, 7, 0.349);
+
+}
+
+QLineEdit{
+	border-radius: 8px;
+	border: 3px solid #72A1E5;
+	background: rgba( 0, 0, 0, 0);
+	font-size: 13px;
+	color: rgba(249, 249, 249, 1);
 
 }

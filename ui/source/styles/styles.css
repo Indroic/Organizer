@@ -15,7 +15,7 @@ QWidget#config {
 
 
 
-QLabel#label_input_dir, QLabel#label_select_filter {
+QLabel#label_input_dir, QLabel#label_select_filter{
 	color: rgba(249, 249, 249, 0.53);
 	font-family: Inter;
 	font-size: 16px;
@@ -24,21 +24,34 @@ QLabel#label_input_dir, QLabel#label_select_filter {
 	line-height: normal;
 }
 
-QLabel#input_dir {
+QLabel#add_extension_label, QLabel#dir_label, QLabel#name_label, QLabel#extensions_list_label    {
+	color: rgba(249, 249, 249, 0.53);
+	font-family: Inter;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+
+QLabel#input_dir, QLineEdit#name_input, QLineEdit#dir_input, QLineEdit#add_extension_input{
 	border-radius: 8px;
 	border: 3px solid #72A1E5;
+	background: rgba( 0, 0, 0, 0);
 	font-size: 13px;
 	color: rgba(249, 249, 249, 1);
 
 }
 
-QPushButton#select_dir {
+QPushButton#select_dir, QToolButton#dir_select_btn, QToolButton#add_extension_btn, QToolButton#edit_btn, QToolButton#delete_btn {
 	border-radius: 10px;
 	border: 2px solid #223843;
 	background: rgba(34, 56, 67, 0.46);
 	color: rgba(249, 249, 249, 1);
 
 }
+
+
 
 QPushButton#select_dir::pressed {
 	background: rgba(61, 101, 121, 0.582);
@@ -49,7 +62,7 @@ QPushButton#select_dir:hover {
 	background: rgba(28, 60, 77, 0.438);
 	
 }
-QLabel#nombre {
+QLabel#nombre, QLabel#label, QLabel#text_title {
 	color: #FFF;
 
 
@@ -61,7 +74,7 @@ QLabel#nombre {
 	line-height: normal;
 }
 
-QPushButton#organize_btn {
+QPushButton#organize_btn, QPushButton#create_filter{
 	border-radius: 15px;
 	border: 2px solid #223843;
 	background: rgba(34, 56, 67, 0.46);
@@ -76,25 +89,25 @@ QPushButton#organize_btn {
 
 
 
-QPushButton#organize_btn:hover {
+QPushButton#organize_btn:hover, QPushButton#create_filter:hover {
 
 	background: rgba(45, 88, 110, 0.438);
 	
 }
 
-QPushButton#organize_btn:pressed {
+QPushButton#organize_btn:pressed, QPushButton#create_filter:pressed {
 
 	background: rgba(48, 79, 95, 0.685);
 	
 }
 
-QPushButton#organize_btn:disabled {
+QPushButton#organize_btn:disabled, QPushButton#create_filter:disabled {
 
 	background: rgba(102, 114, 121, 0.685);
 	
 }
 
-QListView#filters_list {
+QListView{
 	background: rgba(255, 255, 255, 0);
 	color: rgba(249,249,249,1);
 	border-radius: 10px;
