@@ -14,8 +14,8 @@ Files Organizer based in files collector, processing individualy files and use f
 
 ### Option 1: install source code
 
-1. Clone the repository: `git clone https://github.com/Indroic/Files-Organizer.git`
-2. Navigate to the project directory: `cd Files-Organizer`
+1. Clone the repository: `git clone [https://github.com/Indroic/Files-Organizer.git](https://github.com/Indroic/Organizer.git)`
+2. Navigate to the project directory: `cd Organizer`
 3. Install the dependencies: `pip install -r requirements.txt`
 
 ### Option 2: Donwload compiled file
