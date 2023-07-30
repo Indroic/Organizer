@@ -6,7 +6,7 @@ Files Organizer based in files collector, processing individualy files and use f
 
 ## Feactures
 
-1. Indivualy Filters: Each filter define a extensions list and directory where the files out to the organize
+1. Individualy Filters: Each filter define a extensions list and directory where the files out to the organize
 2. Save Filters: the filter is saving in the config file on created
 
 
