@@ -1,13 +1,16 @@
 import configparser
 import os
-import pathlib
+import appdirs
 from typing import List
 
 class Config(configparser.ConfigParser):
     def __init__(self):
         super().__init__()
-        if os.path.exists(os.path.join(os.getcwd(), "config.ini")):
-            self.read("config.ini")
+        
+        self.configdirectory = appdirs.user_config_dir()
+    
+        if os.path.exists(os.path.join(self.configdirectory, "organizer_config.ini")):
+            self.read(os.path.join(self.configdirectory, "organizer_config.ini"))
         else:
             self.create_config()
     
@@ -15,14 +18,14 @@ class Config(configparser.ConfigParser):
         self.__init__()
     
     def create_config(self):
-        if not os.path.exists(os.path.join(os.getcwd(), "config.ini")):
+        if os.path.exists(os.path.join(self.configdirectory, "organizer_config.ini")) == False:
             self.add_section("initial_config")
             self.set("initial_config", "is_initial", str(True))
-            with open(os.path.join(os.getcwd(),"config.ini"), "w") as fp:
+            with open(os.path.join(self.configdirectory,"organizer_config.ini"), "w") as fp:
                 self.write(fp)
     
     def save_config(self):
-        with open(os.path.join(os.getcwd(),"config.ini"), "w", encoding="utf-8") as fp:
+        with open(os.path.join(self.configdirectory,"organizer_config.ini"), "w", encoding="utf-8") as fp:
             self.write(fp)
                 
     def get_filters(self) -> List[str]:

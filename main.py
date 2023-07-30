@@ -1,7 +1,7 @@
-from email.mime import audio
+
 import sys
 import os
-from pathlib import Path
+
 
 from handlers.file_handler import FileCollector, Filter
 from handlers.config import Config

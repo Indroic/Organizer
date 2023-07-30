@@ -37,8 +37,7 @@ class Filter:
                 "Extensions": self.extensions,
                 "Directory": self.dir_output,
                 }
-            with open(os.path.join(os.getcwd(), "config.ini"), "w", encoding="utf-8") as fp:
-                self.config.write(fp)
+            self.config.save_config()
    
             
     #Carga el filtro
