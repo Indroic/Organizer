@@ -14,6 +14,18 @@ from PySide6.QtWidgets import (QDialog, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
 import ui.source.icons_rc
+import os
+import sys
+
+def resource_path(relative_path):
+    
+    try:
+       
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class SuccessDialog(QDialog):
     def __init__(self):
@@ -23,7 +35,7 @@ class SuccessDialog(QDialog):
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
-        self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
+        self.setStyleSheet(open(resource_path("ui/source/styles/dialogs_styles.css"), "r").read())
         self.horizontalLayout_3 = QHBoxLayout(self)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout = QVBoxLayout()
@@ -79,7 +91,7 @@ class SuccessDialog(QDialog):
 
 
         self.horizontalLayout_3.addLayout(self.verticalLayout)
-        
+        self.setWindowIcon(QPixmap(resource_path("ui/source/logo.png")))
         self.pushButton.clicked.connect(self.close)
 
 
@@ -96,7 +108,7 @@ class ErrorDialog(QDialog):
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
-        self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
+        self.setStyleSheet(open(resource_path("ui/source/styles/dialogs_styles.css"), "r").read())
         self.horizontalLayout_3 = QHBoxLayout(self)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.verticalLayout = QVBoxLayout()
@@ -113,7 +125,7 @@ class ErrorDialog(QDialog):
         self.icon_success.setMaximumSize(QSize(40, 40))
         self.icon_success.setPixmap(QPixmap(u":/icons/error.svg"))
         self.icon_success.setScaledContents(True)
-
+        self.setWindowIcon(QPixmap(resource_path("ui/source/logo.png")))
         self.horizontalLayout_2.addWidget(self.icon_success)
 
         self.label_2 = QLabel(self.body)

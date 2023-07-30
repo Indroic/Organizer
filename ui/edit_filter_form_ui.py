@@ -19,6 +19,19 @@ from PySide6.QtWidgets import ( QDialog, QHBoxLayout, QLabel,
 
 from handlers.file_handler import Filter
 
+import os
+import sys
+
+def resource_path(relative_path):
+    
+    try:
+        
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 class Ui_EditFilter(QDialog):
     def __init__(self, filter: Filter):
         super().__init__()
@@ -28,7 +41,7 @@ class Ui_EditFilter(QDialog):
         self.horizontalLayout = QHBoxLayout(self)
         self.setWindowTitle(u"Edit Filter")
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
+        self.setStyleSheet(open(resource_path("ui/source/styles/dialogs_styles.css"), "r").read())
         self.verticalLayout_11 = QVBoxLayout()
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.horizontalLayout_11 = QHBoxLayout()
@@ -36,7 +49,7 @@ class Ui_EditFilter(QDialog):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.text_title_2 = QLabel(self)
         self.text_title_2.setObjectName(u"text_title_2")
-        self.setWindowIcon(QPixmap("ui/source/logo.png"))
+        self.setWindowIcon(QPixmap(resource_path("ui/source/logo.png")))
         self.setMaximumSize(QSize(340, 433))
         self.setMinimumSize(QSize(340, 433))
 
