@@ -41,3 +41,7 @@ Files Organizer based in files collector, processing individualy files and use f
 2. Press "Edit" button
 3. Edit the Filter
 4. Press "Edit" button
+
+### Delete Filter:
+1. Select the edit filet in Filters list
+2. Press "Delete" button
