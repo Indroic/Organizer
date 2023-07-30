@@ -20,6 +20,6 @@ Files Organizer based in files collector, processing individualy files and use f
 
 ### Option 2: Donwload compiled file
 
-1. Donwload the compiled file for Windows: [Dowload Windows](compile)
+1. Donwload the compiled file for Windows: [Download Windows x64](https://github.com/Indroic/Files-Organizer/compile/Files_Organizer_x64.exe)
 
 ## Usage
