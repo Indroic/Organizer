@@ -29,6 +29,7 @@ class Ui_EditFilter(QDialog):
             self.setObjectName(u"Dialog")
         self.resize(339, 387)
         self.horizontalLayout = QHBoxLayout(self)
+        self.setWindowTitle(u"Edit Filter")
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.setStyleSheet(open("ui/source/styles/dialogs_styles.css", "r").read())
         self.verticalLayout_11 = QVBoxLayout()

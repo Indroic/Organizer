@@ -19,7 +19,7 @@ class SuccessDialog(QDialog):
     def __init__(self):
         super().__init__()
         if not self.objectName():
-            self.setObjectName(u"Dialog")
+            self.setObjectName(u"Success")
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
@@ -92,7 +92,7 @@ class ErrorDialog(QDialog):
     def __init__(self):
         super().__init__()
         if not self.objectName():
-            self.setObjectName(u"Dialog")
+            self.setObjectName(u"Error")
         self.resize(300, 100)
         self.setMinimumSize(QSize(300, 100))
         self.setMaximumSize(QSize(300, 100))
