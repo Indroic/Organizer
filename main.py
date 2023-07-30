@@ -9,6 +9,7 @@ from handlers.config import Config
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 
 from ui.dialogs import SuccessDialog, ErrorDialog
+from PySide6.QtGui import QPixmap
 from ui.edit_filter_form_ui import Ui_EditFilter
 from ui.mainWindow_ui import Ui_Main
 from handlers.extensions import *
@@ -19,6 +20,7 @@ class Main(QMainWindow):
         self.ui = Ui_Main()
         self.ui.setupUi(self)
         self.setWindowTitle("Organizer")
+        self.setWindowIcon(QPixmap("ui/source/logo.png"))
         
         self.config = Config()
         
@@ -33,6 +35,7 @@ class Main(QMainWindow):
     
         self.dir_organize_dialog = QFileDialog(self)
         self.dir_organize_dialog.setFileMode(QFileDialog.Directory)
+        self.dir_organize_dialog.setWindowIcon(QPixmap("ui/source/logo.png"))
         
         self.dir_organize_dialog.setWindowTitle("Select Directory")
         
@@ -40,6 +43,7 @@ class Main(QMainWindow):
         self.dir_output_dialog = QFileDialog(self)
 
         self.dir_output_dialog.setFileMode(QFileDialog.Directory)
+        self.dir_output_dialog.setWindowIcon(QPixmap("ui/source/logo.png"))
 
         self.dir_output_dialog.setWindowTitle("Select Directory")
 

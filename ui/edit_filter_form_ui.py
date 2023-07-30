@@ -11,7 +11,7 @@
 from PySide6.QtCore import (QCoreApplication,
     QMetaObject,
     QSize)
-
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import ( QDialog, QHBoxLayout, QLabel,
     QLineEdit, QListWidget, QPushButton,
     QSizePolicy, QSpacerItem, QToolButton, QVBoxLayout,
@@ -36,7 +36,7 @@ class Ui_EditFilter(QDialog):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.text_title_2 = QLabel(self)
         self.text_title_2.setObjectName(u"text_title_2")
-
+        self.setWindowIcon(QPixmap("ui/source/logo.png"))
         self.setMaximumSize(QSize(340, 433))
         self.setMinimumSize(QSize(340, 433))
 
@@ -173,7 +173,7 @@ class Ui_EditFilter(QDialog):
         self.horizontalLayout.addLayout(self.verticalLayout_11)
 
 
-        self.retranslateUi(self)
+        self.retranslateUi()
 
         QMetaObject.connectSlotsByName(self)
         self.dir_output_dialog = QFileDialog(self)
@@ -220,8 +220,7 @@ class Ui_EditFilter(QDialog):
         self.dir_output_dialog.exec()
         self.dir_input_2.setText(self.dir_output_dialog.selectedFiles()[0])
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+    def retranslateUi(self):
         self.text_title_2.setText(QCoreApplication.translate("Dialog", u"Editar Filtro", None))
         self.dir_label_2.setText(QCoreApplication.translate("Dialog", u"Carpeta", None))
         self.dir_select_btn_2.setText(QCoreApplication.translate("Dialog", u"...", None))
