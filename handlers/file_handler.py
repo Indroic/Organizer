@@ -133,7 +133,7 @@ class FileCollector:
 
     Args:
         path (str): The path where the files will be collected from.
-        extension (Filter): The filter of the files by.
+        filter (Filter): The filter of the files by.
 
     Attributes:
         path (str): The path where the files will be collected from.
